@@ -1,17 +1,20 @@
-Resources:
-	Ec2Instance:
- 		Type: 'AWS::EC2::Instance'
- 		Properties:
-   		SecurityGroups:
-     			- !Ref InstanceSecurityGroup
-   		KeyName: mypemfile
-   		ImageId: 'ami-07dd19a7900a1f049' # you may need to find out what instance types are available in your region - use https://cloud-images.ubuntu.com/locator/ec2/
-	InstanceSecurityGroup:
- 		Type: 'AWS::EC2::SecurityGroup'
- 		Properties:
-   		GroupDescription: Enable SSH access via port 22
-   		SecurityGroupIngress:
-    		 - IpProtocol: tcp
-       		 FromPort: '22'
-       		 ToPort: '22'
-       		 CidrIp: 0.0.0.0/0
+--- 
+Ec2Instance: 
+  Properties: 
+    ImageId: ami-068663a3c619dd892
+    KeyName: udacity
+    SecurityGroups: 
+      - InstanceSecurityGroup
+  Type: "AWS::EC2::Instance"
+InstanceSecurityGroup: 
+  Properties: 
+    GroupDescription: "Enable SSH access via port 22"
+    SecurityGroupIngress: 
+      - 
+        CidrIp: 0.0.0.0/0
+        FromPort: "22"
+        IpProtocol: tcp
+        ToPort: "22"
+  Type: "AWS::EC2::SecurityGroup"
+Resources: ~
+
